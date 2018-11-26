@@ -18,4 +18,4 @@ $document->documentID = 1;
 $document->documentName = "test";
 $document->paragraphs = array("test","test2","test3");
 
-echo document->getDocument();
+echo $document->getDocument();

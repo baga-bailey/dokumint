@@ -13,30 +13,33 @@
 <link
 	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css"
 	rel="stylesheet">
-	<link
-	href="./external/css/jquery/jquery-ui.css"
-	rel="stylesheet">
+<link href="./external/css/jquery/jquery-ui.css" rel="stylesheet">
 <link rel="stylesheet" href="./external/css/local/edit.css">
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
-<script src="./external/js/jquery/jquery-ui.js"></script>
+
 <script src="./external/js/local/edit.js"></script>
 
 <style>
-  
-  </style>
+</style>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 	$(function() {
 		$("#sortable").sortable({
 			placeholder : "placeholder",
-			handle: ".handle"
+			handle : ".handle"
 		});
 		//$("#sortable").disableSelection();
 	});
 </script>
 
-
+<script type="text/javascript">
+	$(function() {
+		if (sessionStorage.pageState) {
+			$("#sortable").append(sessionStorage.pageState);
+		}
+	});
+</script>
 
 <style>
 </style>
@@ -87,7 +90,9 @@
 							style="font-family: 'HelveticaNeue', Helvetica, Arial, sans-serif; font-size: 14px;">New
 						</span> <span class="caret"></span>
 					</button -->
-					<button type="button" data-toggle="dropdown" class="btn"><i class="glyphicon glyphicon-plus"></i> New</button>
+					<button type="button" data-toggle="dropdown" class="btn">
+						<i class="glyphicon glyphicon-plus"></i> New
+					</button>
 					<ul class="dropdown-menu">
 						<li><a href="#">Document</a></li>
 						<li onClick="addParagraph()"><a href="#">Paragraph</a></li>
@@ -102,10 +107,9 @@
 					<div id="home" class="tab-pane fade in active">
 						<h3>HOME</h3>
 						<p>Some content.</p>
+						<button onClick="resetPage()">Reset</button>
 					</div>
 					<div id="menu1" class="tab-pane fade">
-						<h3>Menu 1</h3>
-						<p>Some content in menu 1.</p>
 					</div>
 					<div id="menu2" class="tab-pane fade">
 						<h3>Menu 2</h3>
@@ -120,29 +124,29 @@
 			<div class="col-sm-8 height-90">
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#designer">Designer</a></li>
-					<li onClick="saveFragment()"><a data-toggle="tab" href="#preview">Preview</a></li>
+					<li onClick="saveFragment()"><a data-toggle="tab"
+						href="#preview">Preview</a></li>
 					<li><a data-toggle="tab" href="#testTab">Test Tab</a></li>
 				</ul>
 				<div class="tab-content height-90">
 					<div id="designer" class="tab-pane fade in active height-90">
-						<ul id="sortable" class="paragraphList">
-							<h3>Designer</h3>
+						<h3>Designer</h3>
 						<p>Some content in designer.</p>
-						</ul>	
+						<ul id="sortable" class="paragraphList">
+
+						</ul>
 					</div>
 					<div id="preview" class="tab-pane fade in active height-90">
 						<ul id="sortable" class="paragraphList">
 							<h3>Menu 2</h3>
-						<p>Some content in menu 2.</p>
-						</ul>	
+							<p>Some content in menu 2.</p>
+						</ul>
 					</div>
 					<div id="preview" class="tab-pane fade">
 						<h3>Menu 1</h3>
 						<p>Some content in menu 1.</p>
 					</div>
-					<div id="testTab" class="tab-pane fade">
-						
-					</div>
+					<div id="testTab" class="tab-pane fade"></div>
 				</div>
 			</div>
 
