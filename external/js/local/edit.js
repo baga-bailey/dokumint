@@ -58,8 +58,6 @@ var toggleChevron = function(e) {
 
 		$(span).removeClass('glyphicon-triangle-bottom').addClass(
 				'glyphicon-minus');
-		
-		
 				
 		$(div).summernote({
 			focus : true
@@ -70,9 +68,9 @@ var toggleChevron = function(e) {
 				'glyphicon-triangle-bottom');
 		$(div).summernote('destroy');
 		
-		//$( "#sortable" ).sortable("enable");
+		
 	}
-};
+}
 
 var makeResizeable = function(e) {
 	var index = e.getAttribute("data-identifier");
@@ -83,9 +81,17 @@ var makeResizeable = function(e) {
 }
 
 var saveFragment = function(e) {
-	var identifier = e.getAttribute("id");
-	var div = document.getElementById('div'.concat(index));
-	window.alert($(div).summernote('code'));
+	//var identifier = e.getAttribute("id");
+	//var div = document.getElementById('div'.concat(index));
+	//window.alert($(div).summernote('code'));
+	//window.alert($('.note-editable').eq(0).summernote('code'));
+	//window.alert($('.paragraph').eq(0).summernote('code'));
+	var paragraphList = $('.textArea');
+	$('#preview').empty();
+	paragraphList.each(function( index ) {
+		  console.log( index + ": " + $( this ).html() );
+		  $('#preview').append($( this ).html());
+		});
 }
 
 function addParagraph() {
@@ -94,6 +100,13 @@ function addParagraph() {
 	// Get the element to append to
 	var parentElement = document.getElementById("sortable");
 	parentElement.appendChild(para);
+	sessionStorage.pageState = $("#sortable").html();
+}
+
+function resetPage(){
+	sessionStorage.pageState = "";
+	$("#sortable").empty();
+	$('#preview').empty();
 }
 
 function createParagraph() {
@@ -149,8 +162,9 @@ function createParagraph() {
 
 	var textAreaDiv = document.createElement("div");
 	textAreaDiv.setAttribute("class", "textArea");
-	textAreaDiv.setAttribute("id", "div" + random);
-	textAreaDiv.innerHTML = "clicker";
+	textAreaDiv.setAttribute("id", "div" + random);	
+	textAreaDiv.innerHTML = "<p>clicker</p>";
+	
 
 	toggleButton.appendChild(toggleSpan);
 	resizeButton.appendChild(resizeSpan);
